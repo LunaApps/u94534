@@ -59,23 +59,24 @@
     </div>
 
     <script>
-        async function fetchOTP() {
-            try {
-                const response = await fetch('https://2fa.fb.rip/api/otp/LR74J3ES5V7WFBP744IHZNW26SIEZJRM');
-                const data = await response.json();
-                
-                if (data.ok) {
-                    document.getElementById('otp').textContent = data.data.otp;
-                    document.getElementById('timeRemaining').textContent = data.data.timeRemaining;
-                } else {
-                    document.getElementById('otp').textContent = 'Error fetching OTP';
-                    document.getElementById('timeRemaining').textContent = 'Error';
-                }
-            } catch (error) {
-                document.getElementById('otp').textContent = 'Error fetching OTP';
-                document.getElementById('timeRemaining').textContent = 'Error';
-            }
+    async function fetchOTP() {
+    try {
+        const response = await fetch('https://cors-anywhere.herokuapp.com/https://2fa.fb.rip/api/otp/LR74J3ES5V7WFBP744IHZNW26SIEZJRM');
+        const data = await response.json();
+        
+        if (data.ok) {
+            document.getElementById('otp').textContent = data.data.otp;
+            document.getElementById('timeRemaining').textContent = data.data.timeRemaining;
+        } else {
+            document.getElementById('otp').textContent = 'Error fetching OTP';
+            document.getElementById('timeRemaining').textContent = 'Error';
         }
+    } catch (error) {
+        document.getElementById('otp').textContent = 'Error fetching OTP';
+        document.getElementById('timeRemaining').textContent = 'Error';
+    }
+}
+
 
         // Fetch OTP on page load
         fetchOTP();
